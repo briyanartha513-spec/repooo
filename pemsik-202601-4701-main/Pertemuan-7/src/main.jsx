@@ -14,6 +14,8 @@ import Mahasiswa from "@/Pages/Admin/Mahasiswa/Mahasiswa";
 import MahasiswaDetail from "@/Pages/Admin/MahasiswaDetail/MahasiswaDetail";
 import PageNotFound from "@/Pages/Error/PageNotFound";
 
+import { Toaster } from "react-hot-toast";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -68,6 +70,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Toaster position="top-right" />
     <RouterProvider router={router} />
   </React.StrictMode>
 );

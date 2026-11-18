@@ -20,12 +20,15 @@ const Login = () => {
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = form;
+
+    const email = form.email.trim();
+    const { password } = form;
 
     if (email === dummyUser.email && password === dummyUser.password) {
       localStorage.setItem("user", JSON.stringify(dummyUser));
@@ -38,29 +41,36 @@ const Login = () => {
   return (
     <Card className="max-w-md">
       <Heading as="h2">Login</Heading>
+
       <Form onSubmit={handleSubmit}>
         <div>
           <Label htmlFor="email">Email</Label>
           <Input
+            id="email"
             type="email"
             name="email"
+            autoComplete="email"
             value={form.email}
             onChange={handleChange}
             placeholder="Masukkan email"
             required
           />
         </div>
+
         <div>
           <Label htmlFor="password">Password</Label>
           <Input
+            id="password"
             type="password"
             name="password"
+            autoComplete="current-password"
             value={form.password}
             onChange={handleChange}
             placeholder="Masukkan password"
             required
           />
         </div>
+
         <div className="flex justify-between items-center">
           <label className="flex items-center">
             <input type="checkbox" className="mr-2" />
@@ -70,10 +80,12 @@ const Login = () => {
             Lupa password?
           </Link>
         </div>
+
         <Button type="submit" className="w-full">
           Login
         </Button>
       </Form>
+
       <p className="text-sm text-center text-gray-600 mt-4">
         Belum punya akun? <Link href="#">Daftar</Link>
       </p>
@@ -81,4 +93,4 @@ const Login = () => {
   );
 };
 
-export default Login
+export default Login;
